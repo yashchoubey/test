@@ -1,0 +1,192 @@
+Task	Text	 
+Match	Ana	Success
+Match	Bob	Success
+Match	Cpc	Success
+Skip	aax	To be completed
+Skip	bby	To be completed
+Skip	ccz	To be completed
+
+Ans: [A-Z]
+---------------------------------------------------------
+Task	Text	 
+Match	wazzzzzup	Success
+Match	wazzzup	Success
+Skip	wazup
+
+Ans: waz.{2,4}up
+---------------------------------------------------------
+
+Task	Text	 
+Match	1 file found?	Success
+Match	2 files found?	Success
+Match	24 files found?	Success
+Skip	No files found.
+
+Ans: [0-9]+ files* found\?  or \d+ files? found\?
+---------------------------------------------------------
+
+
+Task	Text	 
+Match	1.   abc	        Success
+Match	2.	abc	            Success
+Match	3.           abc	Success
+Skip	4.abc	            To be completed
+
+
+Ans: \d.\s+abc
+
+---------------------------------------------------------
+
+Task	Text	 
+Match	Mission: successful	Success
+Skip	Last Mission: unsuccessful	To be completed
+Skip	Next Mission: successful upon capture of target
+
+Ans: ^Mission: successful$
+One way to tighten our patterns is to define a pattern that describes both the start and the end of the line using the special ^ (hat) and $ (dollar sign) metacharacters. 
+---------------------------------------------------------
+
+Task	Text	                      Capture Groups	 
+Capture	file_record_transcript.pdf	  file_record_transcript	Success
+Capture	file_07241999.pdf	          file_07241999	            Success
+Skip	testfile_fake.pdf.tmp		                            To be completed
+
+
+Ans: ^(file_[a-zA-Z_0-9]+).pdf$ or ^(file.+)\.pdf$
+---------------------------------------------------------
+
+
+Task	Text	    Capture    Groups	 
+Capture	Jan 1987	Jan 1987    1987	Success
+Capture	May 1969	May 1969    1969	Success
+Capture	Aug 2011	Aug 2011    2011	Success
+
+
+Ans: (\w+ (\d+)) or (\w+ ([0-9]+))
+---------------------------------------------------------
+
+Task	Text	 
+Match	I love cats	Success
+Match	I love dogs	Success
+Skip	I love logs	To be completed
+Skip	I love cogs
+
+
+Ans: ^I love (cats|dogs)$
+---------------------------------------------------------
+
+
+Task	Text	 
+Match	The quick brown fox jumps over the lazy dog.	                Success
+Match	There were 614 instances of students getting 90.0% or above.	Success
+Match	The FCC had to censor the network for saying &$#*@!.         	Success
+
+
+Ans: [\w .%&$#@!*]+ or .*
+---------------------------------------------------------
+
+
+Task	Text	 
+Match	3.14529	   Success
+Match	-255.34	   Success
+Match	128	       Success
+Match	1.9e10	   Success
+Match	123,340.00	Success
+Skip	720p	   To be completed
+
+
+
+Ans: ^-?\d+(,\d+)*(\.\d+(e\d+)?)?$
+---------------------------------------------------------
+
+Task	Text	Capture Groups	 
+Capture	415-555-1234	415	Success
+Capture	650-555-2345	650	Success
+Capture	(416)555-3456	416	Success
+Capture	202 555 4567	202	Success
+Capture	4035555678	403	Success
+Capture	1 416 555 9292	416	Success
+
+
+Ans: (\d{3}) or 
+For full capture: 1?[\s-]?\(?(\d{3})\)?[\s-]?\d{3}[\s-]?\d{4} or \(*(\d )*(\d{3})(-|\)| )*(\d{3})(-|\)| )*(\d{4})
+---------------------------------------------------------
+
+
+Task	Text						Capture 			Groups	 
+Skip	.bash_profile									To be completed
+Skip	workspace.doc									To be completed
+Capture	img0912.jpg					img0912 jpg			Success
+Capture	updated_img0912.png		updated_img0912 png		Success
+Skip	documentation.html								To be completed
+Capture	favicon.gif					favicon gif			Success
+Skip	img0912.jpg.tmp									To be completed
+Skip	access.lock	
+
+Ans: (\w+)\.((gif|png|jpg))$
+---------------------------------------------------------
+
+
+Task	Text	Capture Groups	 
+Capture				The quick brown fox...	The quick brown fox...	Success
+Capture	   jumps over the lazy dog.	jumps over the lazy dog.	Success
+
+We can just skip all the starting and ending whitespace by not capturing it in a line. 
+
+Ans: ^\s*(.*)\s*$
+---------------------------------------------------------
+
+Text	                                                      Capture	 
+ftp://file_server.com:21/top_secret/life_changing_plans.pdf	   ftp file_server.com 21
+https://regexone.com/lesson/introduction#section				https regexone.com
+file://localhost:4040/zip_file									file localhost 4040
+https://s3cur3-server.com:9999/								https s3cur3-server.com 9999
+market://search/angry%20birds								market search
+
+
+Ans: (\w+)\://([\w.-]+)\:*(\d*)
+---------------------------------------------------------
+
+
+
+
+Ans: 
+---------------------------------------------------------
+
+
+
+
+Ans: 
+---------------------------------------------------------
+
+
+
+
+Ans: 
+---------------------------------------------------------
+
+
+
+
+Ans: 
+---------------------------------------------------------
+
+
+
+
+Ans: 
+---------------------------------------------------------
+
+
+
+
+Ans: 
+---------------------------------------------------------
+
+
+
+Ans: 
+
+
+
+Ans: 
